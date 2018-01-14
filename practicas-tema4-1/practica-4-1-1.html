@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Practica 4.1.1</title>
+	<script type="text/javascript">
+		function validaForm(){
+			var nombre = document.getElementById('txtNombre').value;
+			var fecha = document.getElementById('txtFechaNac').value;
+			var dni = document.getElementById('txtDNI').value;
+			var matricula = document.getElementById('txtMatricula').value;
+			var importe = document.getElementById('txtImporte').value;
+			var mensaje = "";
+
+			if(!validaNombre(nombre)){
+				mensaje = mensaje + "- El nombre introducido no es correcto\n";
+			}
+			if(!validaFecha(fecha)){
+				mensaje = mensaje + "- La fecha introducida no es correcta o es menor de edad\n";
+			}
+			if(!validaDNI(dni)){
+				mensaje = mensaje + "- El DNI introducido no es correcto\n";
+			}
+			if(!validaMatricula(matricula)){
+				mensaje = mensaje + "- La matrícula introducida no es correcta\n";
+			}
+			if(!validaImporte(importe)){
+				mensaje = mensaje + "- El importe ha de ser superior a 0\n";
+			}
+
+			if(mensaje!==""){
+				alert(mensaje);
+				return false;
+			} else {
+				alert("El formulario se ha procesado correctamente");
+				return true;
+			}
+		}
+
+		function validaNombre(nombre){
+			var Letras = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ ";
+			for (var i = 0; i < nombre.length; i++) {
+				if(Letras.indexOf(nombre[i])===-1){
+					return false;
+				}
+			}
+			return true;
+		}
+		function validaFecha(fecha){
+			var mayoredad = 6570;
+			var FechaNac = new Date(fecha);
+			var FechaHoy = new Date();
+			var diferencia = (FechaHoy - FechaNac)/1000/60/60/24;
+			if(diferencia < mayoredad){
+				return false;
+			}
+			return true;
+		}
+
+		function validaDNI(documento){
+			var numeros = documento.slice(0,8);
+			var letra = documento.slice(8);
+			var numeroDNI = parseInt(numeros); 
+			var calculaDNI = numeroDNI % 23;
+			var letrasDNI = "TEWAGMYFPDXBNJZSQVHLCKET";
+			var letraValida = letrasDNI.slice(calculaDNI, calculaDNI+1)
+			if(documento.length < 9 || documento.length > 9 || letraValida !== letra || isNaN(numeros)) {
+				return false;
+			}
+			return true;
+		}
+
+		function validaMatricula(matricula){
+			var numeros = matricula.slice(0,4);
+			var letras = matricula.slice(numeros.length,matricula.length-3);
+			var letras_validas = "BCDFGHJKLMNPRSTVWXYZ";
+			var valido = true;
+			for(var i=0; i<letras.length; i++){
+				if(letras[i].indexOf(letras_validas)===-1){
+					valido = false;
+				}
+			}
+			if(isNaN(numeros)||!valido||matricula.length<7||matricula.length>7){
+				return false;
+			}
+			return true;
+		}
+
+		function validaImporte(importe){
+			var cantidad = parseFloat(importe);
+			if(isNaN(importe)||cantidad<=0||importe.length==0){
+				return false;
+			}
+			return true;
+		}
+	</script>
+</head>
+<body>
+	<h1>Datos del conductor</h1>
+<form>
+	<div style="float:left;width:200px;height:300px">
+		<label for="txtNombre" style="float:right;font-size:20px">Nombre y Apellidos</label><br>
+		<label for="txtFechaNac" style="float:right;font-size:20px">Fecha de Nacimiento</label><br>
+		<label for="txtDNI" style="float:right;font-size:20px">DNI del Conductor</label><br>
+		<label for="txtMatricula" style="float:right;font-size:20px">Matrícula del coche</label><br>
+		<label for="txtImporte" style="float:right;font-size:20px">Importe del Alquiler</label><br>
+	</div>
+	<div style="float:left;width:200px;height:300px;margin-left:5px">
+		<input type="text" name="txtNombre" id="txtNombre" style="margin:0 0 1px 5px"/><br>
+		<input type="date" name="txtFechaNac"  id="txtFechaNac" style="margin:0 0 1px 5px"/><br>
+		<input type="text" name="txtDNI"  id="txtDNI" style="margin:0 0 1px 5px"/><br>
+		<input type="text" name="txtMatricula"  id="txtMatricula" style="margin:0 0 1px 5px"/><br>
+		<input type="text" name="txtImporte" id="txtImporte" style="margin:0 0 1px 5px"/><br>
+		<input type="button" name="" value="Validar datos" onclick="validaForm()" style="margin:5px 0 1px 4px"/>
+	</div>
+</form>
+</body>
+</html>

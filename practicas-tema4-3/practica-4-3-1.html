@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 4.3.1</title>
+    <script>
+        var meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+        var ingresos = new Array();
+        var gastos = new Array();
+        var mes = new Date().getMonth();
+        function introduceIngresos(){
+            for(var i = 0; i <= mes; i++){
+                ingresos[i] = prompt("Introduce los ingresos del mes de " + meses[i]);
+            }
+        }
+        function introduceGastos(){
+            for(var i = 0; i <= mes - 1; i++){
+                gastos[i] = prompt("Introduce los gastos del mes de " + meses[i]);
+            }
+        }
+        function dameResultados(){
+            var total = "";
+            for(var i = 0; i <= mes-1; i++){
+                var resultado = ingresos[i]-gastos[i];
+                if(resultado < 0){
+                    total = "<span style='color: red'>"+resultado+"</span>";
+                } else {
+                    total = "<span>"+resultado+"</span>";
+                }
+                document.write("Ingresos del mes de " + meses[i] + ": " + ingresos[i] + " - Gastos: " + gastos[i] + " = " + total + "<br/>");
+            }
+        }
+    </script>
+</head>
+<body>
+<form>
+    <input type="button" value="Introducir Ingresos" name="btnIngresos" id="btnIngresos" onclick="introduceIngresos()"/><br/>
+    <input type="button" value="Introducir Gastos" name="btnGastos" id="btnGastos" onclick="introduceGastos()"/><br/>
+    <input type="button" value="Mostrar Resultado" name="btnResultados" id="btnResultados" onclick="dameResultados()"/>
+</form>
+</body>
+</html>

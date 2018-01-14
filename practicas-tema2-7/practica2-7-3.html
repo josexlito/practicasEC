@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Practica 2-7-3</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var hermanos = parseInt(prompt("Cuantos hermanos tienes?"));
+		var cantidad = parseInt(prompt("Indica una cantidad"));
+		var calculo;
+		if(hermanos >= 3){
+			calculo = cantidad * 0.85;
+			salida = " (15% de Descuento)";
+		} else if (hermanos < 3 && hermanos > 0){
+			calculo = cantidad * 0.95;
+			salida = " (5% de Descuento)";
+		} else {
+			calculo = cantidad;
+			salida = " (Sin Descuento)";
+		}
+		alert("Le corresponde abonar "+calculo+"€"+salida);
+	</script>
+</body>
+</html>

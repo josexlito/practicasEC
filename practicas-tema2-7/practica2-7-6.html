@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Práctica 2-7-6</title>
+</head>
+<body>
+    <script>
+        var numero1 = parseInt(prompt("Introduzca un número"));
+        var numero2 = parseInt(prompt("Introduzca otro número"));
+        var operador = prompt("Introduzca ahora un operador");
+        switch (operador) {
+            case "+":
+                operacion = numero1 + numero2;
+                break;
+            case "-":
+                operacion = numero1 - numero2;
+                break;
+            case "*":
+                operacion = numero1 * numero2;
+                break;
+            case "/":
+                operacion = numero1 / numero2;
+                break;
+            default:
+                operacion = "Operador incorrecto";
+                break;
+        }
+        alert(operacion);
+    </script>
+</body>
+</html>

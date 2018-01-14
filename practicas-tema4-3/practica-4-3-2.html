@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 4.3.2</title>
+    <script>
+        var socios = new Array();
+        function nuevosSocios(){
+            for(var i = 0;i < 10; i++){
+                numero = parseInt([i]);
+                socios[i] = prompt("Introduce el nombre del socio número " + (numero+1) + ":");
+            }
+        }
+        function listarSocios(){
+            var salida = "";
+            for(var i = 0;i < socios.length; i++){
+                salida = salida + socios[i];
+                if(i < socios.length - 1){
+                    salida = salida + ",";
+                }
+            }
+            alert(salida);
+        }
+        function numeroSocios(){
+            alert("Número de socios: " + socios.length);
+        }
+        function ordenaSocios(){
+            var salida = socios.sort();
+            alert(salida);
+        }
+        function ordenaInversa(){
+            var salida = socios.reverse();
+            alert(salida);
+        }
+        function borraSocio(accion){
+            if(accion === "nombre"){
+                var nombre = prompt("Introduce el nombre del socio a eliminar");
+                var posicion = socios.indexOf(nombre);
+                console.log(posicion);
+                if(posicion===-1){
+                    alert("El socio que trata de eliminar no existe");
+                } else {
+                    socios.splice(posicion);
+                    listarSocios();
+                }
+            } else if(accion === "numero") {
+                var numero = prompt("Introduce el número del socio a eliminar");
+                numero = parseInt(numero) + 1;
+                console.log(numero);
+                if(numero > socios.length || numero <= 0){
+                    alert("El número de socio es incorrecto");
+                } else {
+                    socios.splice(numero);
+                    listarSocios();
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="Introducir Socios" name="btnNuevo" id="btnNuevo" onclick="nuevosSocios()"/><br/><br/>
+<input type="button" value="Mostrar Nombres" name="btnNombres" id="btnNombres" onclick="listarSocios()"/><br/>
+<input type="button" value="Mostrar nº de socios" name="btnSocios" id="btnSocios" onclick="numeroSocios()"/><br/>
+<input type="button" value="Mostrar socios ordenados" name="btnSociosOrdenados" id="btnSociosOrdenados" onclick="ordenaSocios()"/><br/>
+<input type="button" value="Mostrar socios en orden inverso" name="btnSociosOrdInv" id="btnSociosOrdInv" onclick="ordenaInversa()"/><br/>
+<input type="button" value="Borrar socio por el nombre" name="btnBorraSocioNom" id="btnBorraSocioNom" onclick="borraSocio('nombre')"/><br/>
+<input type="button" value="Borrar socio por el número" name="btnBorraSocioNum" id="btnBorraSocioNum" onclick="borraSocio('numero')"/>
+</body>
+</html>

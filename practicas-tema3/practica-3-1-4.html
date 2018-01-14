@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Practica 3.1 - 4</title>
+<script>
+    // Obtenemos los datos
+    var nombre = prompt("Indica tu nombre:");
+    var obten_fecha_nac = prompt("Indica tu fecha de nacimiento (P.E.: 28/04/1984):");
+    // Extracción de fecha de nacimiento y establecimiento en un nuevo Date
+    var dia = parseInt(obten_fecha_nac.substr(0, 2));
+    var mes = parseInt(obten_fecha_nac.substr(3, 2));
+    var anio = parseInt(obten_fecha_nac.substr(6, 4));
+    var fecha_nac = new Date(anio, mes - 1, dia);
+    // Vamos a establecer el día de hoy
+    var fecha_hoy = new Date();
+    var dias_vividos = (fecha_hoy - fecha_nac) / 1000 / 60 / 60 / 24;
+    // Vamos a establecer el dia que falten desde el nacimiento hasta los 100 años
+    var fecha_100 = new Date((anio + 100), mes, dia);
+    var dias_a_100 = (fecha_100 - fecha_hoy) / 1000 / 60 / 60 / 24;
+    // Mostramos en pantalla los datos
+    alert(nombre + " has vivido " + dias_vividos + " días y te faltan " + dias_a_100 + " para llegar a los 100 años");
+    //
+    // Ahora vamos a averiguar el signo zodiacal y mostrarlo en pantalla
+    var signo, caracteristica;
+    if ((dia > 21 && mes === 3) || (dia <= 20 && mes === 4)){
+        signo = "Aries";
+        caracteristica = "aventurero, energético, pionero y valiente";
+    } else if ((dia > 21 && mes === 4) || (dia <= 20 && mes === 5)){
+        signo = "Tauro";
+        caracteristica = "paciente, persistente, decidido y fiable";
+    } else if ((dia > 21 && mes === 5) || (dia <= 20 && mes === 6)){
+        signo = "Géminis";
+        caracteristica = "elocuente, cariñoso, comunicativo e inteligente";
+    } else if ((dia > 21 && mes === 6) || (dia <= 20 && mes === 7)){
+        signo = "Cáncer";
+        caracteristica = "emocional y cariñoso, protector y simpático";
+    } else if ((dia > 21 && mes === 7) || (dia <= 20 && mes === 8)){
+        signo = "Leo";
+        caracteristica = "generoso y bondadoso, fiel y cariñoso";
+    } else if ((dia > 21 && mes === 8) || (dia <= 20 && mes === 9)){
+        signo = "Virgo";
+        caracteristica = "modesto, meticuloso, práctico y trabajador";
+    } else if ((dia > 21 && mes === 9) || (dia <= 20 && mes === 10)){
+        signo = "Libra";
+        caracteristica = "idealista, pacífico, optimista y romántico";
+    } else if ((dia > 21 && mes === 10) || (dia <= 20 && mes === 11)){
+        signo = "Escorpio";
+        caracteristica = "emocional, decidido, poderoso y apasionado";
+    } else if ((dia > 21 && mes === 11) || (dia <= 20 && mes === 12)){
+        signo = "Sagitario";
+        caracteristica = "intelectual, honesto, sincero y simpático";
+    } else if ((dia > 21 && mes === 12) || (dia <= 20 && mes === 1)){
+        signo = "Capricornio";
+        caracteristica = "práctico, prudente, paciente y cauteloso";
+    } else if ((dia > 21 && mes === 1) || (dia <= 20 && mes === 2)){
+        signo = "Acuario";
+        caracteristica = "honesto y totalmente leal, original y brillante";
+    } else if ((dia > 21 && mes === 2) || (dia <= 20 && mes === 3)) {
+        signo = "Piscis";
+        caracteristica = "Imaginativo, sensible, amable y tiene compasión";
+    } 
+    alert(nombre + ", eres " + signo + ": " + caracteristica);
+</script>
+</head>
+<body>
+
+</body>
+</html>

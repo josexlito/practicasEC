@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 5 (3 y 4)</title>
+    <style>
+        .form_tabla{
+            display: table;
+        }
+        .form_linea{
+            display: table-row;
+        }
+        .form_celda{
+            display: table-cell;
+        }
+        .alinea_derecha{
+            text-align: right;
+            padding-right: 10px;
+        }
+    </style>
+    <script>
+        function valida_form(){
+            var nomprod = formulario.txt_nomprod.value;
+            var ref = formulario.txt_ref.value;
+            var nomape = formulario.txt_nomape.value;
+            var email = formulario.txt_email.value;
+            var cuenta = formulario.txt_cuenta.value;
+            var pago = formulario.rad_pago.value;
+            if((nomprod == "")||(ref == "")||(nomape == "")||(email == "")||(cuenta == "")){
+                alert("FALTAN CAMPOS POR COMPLETAR");
+                return false;
+            }
+            if(pago == "rad_tarj"){
+                var cad = formulario.txt_cad.value;
+                var fecha_cad = valida_fecha_cad(cad);
+                if (cad == ""){
+                    alert("SI SELECCIONA TARJETA, HA DE COMPLETAR MAS DATOS");
+                    return false;
+                }
+                if(!fecha_cad){
+                    alert("FECHA DE CADUCIDAD MAL PUESTA (FORMATO MM/AAAA)");
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function valida_fecha_cad(valor){
+            var aux_fecha_valor = valor.split('/');
+            var fecha_hoy = new Date();
+            var fecha_valor = new Date(aux_fecha_valor[1], parseInt(aux_fecha_valor[0])-1);
+            return (fecha_valor - fecha_hoy >=0)
+        }
+
+        function valida_escritura(evento_capturado){
+            var tecla_pulsada = evento_capturado.keyCode;
+            var id_campo = evento_capturado.target.id;
+            switch (id_campo){
+                case "txt_nomape":
+                    if(!((tecla_pulsada >= 65 && tecla_pulsada <= 90) || tecla_pulsada == 8 || tecla_pulsada == 32)){
+                        return false;
+                    }
+                    break;
+                case "txt_tel":
+                case "txt_cuenta":
+                    if(!((tecla_pulsada >= 48 && tecla_pulsada <= 57) || (tecla_pulsada >= 96 && tecla_pulsada <= 105) || tecla_pulsada == 8 || tecla_pulsada == 32)){
+                        return false;
+                    }
+                    break;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form id="formulario" method="post" action="hola.html" onsubmit="return valida_form()">
+        <h1>Compra de artículos</h1>
+        <fieldset>
+            <legend>Producto</legend>
+            <div class="form_tabla">
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="txt_nomprod">Nombre del Producto</label></div>
+                    <div class="form_celda"><input id="txt_nomprod" name="txt_nomprod" type="text"></div>
+                </div>
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="txt_ref">Referencia</label></div>
+                    <div class="form_celda"><input id="txt_ref" name="txt_ref" type="text"></div>
+                </div>
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="chk_promo">Promoción especial</label></div>
+                    <div class="form_celda"><input type="checkbox" id="chk_promo"></div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Datos Personales</legend>
+            <div class="form_tabla">
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="txt_nomape">Nombre y Apellidos</label></div>
+                    <div class="form_celda"><input id="txt_nomape" name="txt_nomape" type="text" onkeydown="return valida_escritura(event)"></div>
+                </div>
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="txt_email">Correo Electrónico</label></div>
+                    <div class="form_celda"><input id="txt_email" name="txt_email" type="text"></div>
+                </div>
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="txt_tel">Teléfono</label></div>
+                    <div class="form_celda"><input id="txt_tel" name="txt_tel" type="text" onkeydown="return valida_escritura(event)"></div>
+                </div>
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="chk_catalogo">Recibir catálogo</label></div>
+                    <div class="form_celda"><input type="checkbox" id="chk_catalogo"></div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Forma de Pago</legend>
+            <div class="form_tabla">
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label>Forma de Pago</label></div>
+                    <div class="form_celda"><label for="rad_tarj">Tarjeta</label><input type="radio" name="rad_pago" value="rad_tarj" id="rad_tarj"><label for="rad_cheque">Cheque</label><input name="rad_pago" value="rad_cheque" id="rad_cheque" type="radio"></div>
+                </div>
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="txt_cuenta">Num. de Cuenta</label></div>
+                    <div class="form_celda"><input id="txt_cuenta" name="txt_cuenta" type="text" onkeydown="return valida_escritura(event)"></div>
+                </div>
+                <div class="form_linea">
+                    <div class="form_celda  alinea_derecha"><label for="txt_cad">Caducidad</label></div>
+                    <div class="form_celda"><input id="txt_cad" name="txt_cad" type="text"></div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="form_linea">
+            <input type="submit" value="Comprar">
+            <input type="reset" value="Cancelar">
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Colores</title>
+	<script type="text/javascript">
+		function cambiaPadre(){
+			var color = document.getElementById('seleccionaColor').value;
+			window.opener.document.body.bgColor=color;
+			window.opener.document.getElementById('texto').value=color;
+		}
+	</script>
+</head>
+<body>
+	<h1>Selecciona un color para el fondo de página:</h1>
+<form>
+	<select id="seleccionaColor">
+		<option value="red">Rojo</option>
+		<option value="blue">Azul</option>
+		<option value="yellow">Amarillo</option>
+		<option value="green">Verde</option>
+	</select>
+	<input type="button" value="Modifica el color" name="" onclick="cambiaPadre()" />
+</form>
+</body>
+</html>

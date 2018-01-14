@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Practica 3-3-1</title>
+</head>
+<body>
+<h1 id="texto">Selecciona color para este texto</h1>
+<form id="formulario">
+	<select id="color_elegido">
+		<option value="blue">Azul</option>
+		<option value="yellow">Amarillo</option>
+		<option value="green">Verde</option>
+		<option value="black">Negro</option>
+	</select>
+	<input type="button" name="btn_modifica" value="Modifica color del texto" onclick="document.getElementById('texto').style.color = document.getElementById('color_elegido').value">
+</form>
+</body>
+</html>

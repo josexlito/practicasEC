@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <title>Práctica 4.1.2</title>
+        <script>
+            function obtenIMC(){
+                var kilos = document.getElementById('txtKilos').value;
+                kilos = parseInt(kilos);
+                var altura = document.getElementById('txtAltura').value;
+                altura = parseInt(altura);
+
+                if((!isNaN(kilos) && kilos != "" && kilos > 0) && (!isNaN(altura) && altura != "" && kilos > 0)){
+                    var numIMC = calculaIMC(kilos, altura);
+                    var mensaje = interpretacion(numIMC);
+                    document.getElementById('txtIMC').value = numIMC;
+                    document.getElementById('txtDescripcion').value = mensaje;
+                } else {
+                    alert("Error! Ha introducido valores no válidos");
+                    return false;
+                }
+            }
+
+            function calculaIMC(kilos, altura){
+                var salida = parseFloat(kilos/((altura/100)^2));
+                return salida;
+            }
+
+            function interpretacion(valor){
+                var salida;
+                if(valor < 18.5){
+                    salida = "Se encuentra por debajo del indice normal";
+                } else if (valor > 18.5 && valor < 24.9){
+                    salida = "Se encuentra en su peso ideal ¡Genial!";
+                } else if (valor > 25 && valor < 29.9){
+                    salida = "Tiene unos kilillos de mas, no se descuide";
+                } else {
+                    salida = "Cuidado con su salud, tiene obesidad";
+                }
+                return salida;
+            }
+        </script>
+    </head>
+    <body>
+        <form>
+            <div>
+                <h2>Cálculo del Peso Ideal IMC (Indice de Masa Corporal)</h2>
+                <div>
+                    <label for="txtKilos">Peso en kg:</label><input id="txtKilos" name="txtKilos" type="text">
+                    <label for=txtAltura"">Altura en cm:</label><input id="txtAltura" name="txtAltura" type="text">
+                    <input type="button" value="Calcular" onclick="obtenIMC()">
+                </div>
+                <div>
+                    <label for=txtIMC"">IMC:</label><input id="txtIMC" name="txtIMC" type="text">
+                    <label for="txtDescripcion">Interpretación:</label><input id="txtDescripcion" name="txtDescripcion" type="text">
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

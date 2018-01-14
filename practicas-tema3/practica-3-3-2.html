@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Practica 3-3-2</title>
+	<script>
+		var contador=0;
+		var intervalo;
+		function cambia_color(){
+			console.log("ENTRO. CONTADOR ES "+contador);
+				if(contador%2===0){
+					document.bgColor = "aqua" 
+				} else { 
+					document.bgColor = "yellow" 
+				}
+				contador++;
+				if(contador==6){
+				clearInterval(intervalo);
+				alert("Finalizó el cambio de color");
+				}	
+			}
+
+	</script>
+</head>
+<body onload="intervalo = setInterval(cambia_color, 2000)">
+
+</body>
+</html>

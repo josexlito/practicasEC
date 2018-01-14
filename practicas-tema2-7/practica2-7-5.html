@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Practica 2-7-5</title>
+</head>
+<body>
+    <script>
+        var numero = parseInt(prompt("Introduzca un número"));
+        var salida = "El número "+numero;
+        if (numero % 2 === 0) {
+            salida = salida + " es par";
+        } else {
+            salida = salida + " es impar";
+        }
+        //
+        if (numero % 3 === 0) {
+            salida = salida + ", es múltiplo de 3";
+        }
+        if (numero % 5 === 0) {
+            salida = salida + ", es múltiplo de 5";
+        }
+        alert(salida);
+    </script>
+</body>
+</html>

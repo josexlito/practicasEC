@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Practica 4.4.2</title>
+    <script>
+        var piso_anadido;
+        function piso(metroscuadrados_in, altura_in, numhabitaciones_in, precio_in, iva_in){
+            this.metroscuadrados = metroscuadrados_in;
+            this.altura = altura_in;
+            this.numhabitaciones = numhabitaciones_in;
+            this.precio = precio_in;
+            this.tipo_iva = iva_in;
+            this.total = importe_total(this.precio, this.tipo_iva);
+            this.muestrame_piso = mostrar_piso;
+        }
+
+        function obtener_datos(){
+            var metros_cuadrados = prompt("Introduzca los metros cuadrados");
+            var altura = prompt("Introduzca la altura");
+            var numhabitaciones = prompt("Introduzca el numero de habitaciones");
+            var precio = parseInt(prompt("Introduzca el precio bruto"));
+            var iva = parseInt(prompt("Introduzca el IVA aplicable"));
+            piso_anadido = new piso(metros_cuadrados,altura,numhabitaciones,precio,iva);
+        }
+
+        function importe_total(precio, tipo_iva){
+            return precio + (precio * tipo_iva)/100;
+        }
+
+        function mostrar_piso(){
+            document.write("<b>Metros cuadrados:</b>" + this.metroscuadrados + "<br>");
+            document.write("<b>Altura:</b>" + this.altura + "<br>");
+            document.write("<b>Habitaciones:</b>" + this.numhabitaciones + "<br>");
+            document.write("<b>Precio:</b>" + this.precio + "<br>");
+            document.write("<b>IVA:</b>" + this.tipo_iva + "%<br>");
+            document.write("<b>Importe total:</b>" + this.total + "<br>");
+        }
+
+        function mostrar_en_pantalla(){
+            piso_anadido.muestrame_piso();
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="Introduce datos" onclick="obtener_datos()" />
+<input type="button" value="Mostrar datos" onclick="mostrar_en_pantalla()" />
+</body>
+</html>

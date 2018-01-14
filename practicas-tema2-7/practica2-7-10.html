@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Practica2-7-10</title>
+</head>
+<body>
+    <script>
+        var numero_j1 = parseInt(prompt("Introduzca un número. ¡Que el otro jugador no le vea!"));
+        var numero_j2, contador = 0, salida;
+        while (numero_j2 !== numero_j1) {
+            contador++;
+            numero_j2 = parseInt(prompt("Intenta adivinar el número del adversario"));
+            if (numero_j2 > numero_j1) {
+                alert("Te has pasado de largo! El número es mas bajo");
+            } else if (numero_j2 < numero_j1) {
+                alert("Uy, muy corto! El número es mas alto");
+            } else {
+                alert("Lo adivinaste! Lo has logrado en " + contador + " intentos");
+            }
+        }
+    </script>
+</body>
+</html>

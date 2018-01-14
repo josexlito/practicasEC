@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 5.5 y 5.6</title>
+    <script>
+        function valida_formulario(){
+            valida_texto();
+            valida_password();
+            valida_colores();
+            valida_genero();
+            valida_fichero();
+        }
+
+        function valida_texto(){
+            var texto = formulario.txt_cuadrotexto.value;
+            var regex = /(\w){4,}$/;
+            var salida = "";
+            if (!(regex).test(texto)){
+                salida = "¡Tiene que tener 4 letras mínimo!"
+            }
+            document.getElementById('aviso_cuadrotexto').innerHTML = salida;
+            return texto;
+        }
+
+        function valida_password(){
+            var pass = formulario.txt_contrasena.value;
+            var regex = /(\w)?([A-Z]+)*(\w)*([a-z]+)*(\w)*([0-9]+)(\w)*$/;
+            var salida = "";
+            if (!(regex).test(pass)){
+                salida = "¡La contraseña debe tener al menos una mayúscula, una minúscula y un dígito!";
+            }
+            document.getElementById('aviso_contrasena').innerHTML = salida;
+            return pass;
+        }
+
+        function valida_colores(){
+            var grupo_checkbox = formulario.chk_color.length;
+            var colores_escogidos = "";
+            var cant_marcados = 0;
+            var salida = "";
+            for(var i=0;i<grupo_checkbox;i++){
+                if(formulario.chk_color[i].checked == true){
+                    cant_marcados++;
+                    colores_escogidos = colores_escogidos + formulario.chk_color[i].value + ",";
+                }
+            }
+            if(cant_marcados < 3){
+                salida = "¡Tiene que elegir al menos 4 colores favoritos!"
+            }
+            document.getElementById('aviso_colores').innerHTML = salida;
+            return colores_escogidos;
+        }
+
+        function valida_genero(){
+            var genero = formulario.rdo_genero.length;
+            var marcado = false;
+            var salida = "";
+            for(var i=0;i<genero;i++){
+                if(formulario.rdo_genero[i].checked == true){
+                    marcado = true
+                }
+            }
+            if (!marcado){
+                salida = "¡Tiene que elegir al menos un género!";
+            }
+            document.getElementById('aviso_genero').innerHTML = salida;
+            return formulario.rdo_genero.value;
+        }
+
+        function valida_fichero(){
+            var ruta = formulario.fil_fichero.value;
+            var salida = "";
+            if(ruta == ""){
+                salida = "¡Elige la ruta del fichero!";
+            }
+            document.getElementById('aviso_fichero').innerHTML = salida;
+            return ruta;
+        }
+
+        function establece_cookie(accion){
+            if(accion == "anadir"){
+                introduce_datos_cookie("CuadroTexto", valida_texto());
+                introduce_datos_cookie("Contrasenia", valida_password());
+                introduce_datos_cookie("FicheroAdjunto",valida_fichero());
+                introduce_datos_cookie("Colores",valida_colores());
+                introduce_datos_cookie("Genero",valida_genero());
+            } else if (accion == "borrar"){
+                document.cookie = "CuadroTexto=; max-age=0;";
+                document.cookie = "Contrasenia=; max-age=0;";
+                document.cookie = "FicheroAdjunto=; max-age=0;";
+                document.cookie = "Colores=; max-age=0;";
+                document.cookie = "Genero=; max-age=0;";
+            }
+
+        }
+
+        function introduce_datos_cookie(dato, valor){
+            document.cookie = dato + "=" + valor + "; ";
+        }
+
+        function muestra_cookie(){
+            var salida_cookie = document.cookie;
+            var aux_cookie = salida_cookie.split(";");
+            var salida = "";
+            for(var i=0;i<aux_cookie.length;i++){
+                salida = salida + aux_cookie[i] + "\n";
+            }
+            alert(salida);
+        }
+    </script>
+</head>
+<body>
+<form name="formulario">
+    <h2>Formulario introduce cookies</h2>
+    <fieldset>
+        <label for="txt_cuadrotexto">Cuadro de Texto</label>
+        <input type="text" id="txt_cuadrotexto" name="txt_cuadrotexto">
+        <span class="aviso" id="aviso_cuadrotexto"></span>
+        <br/>
+        <label for="txt_contrasena">Contraseña</label>
+        <input type="password" id="txt_contrasena" name="txt_contrasena">
+        <span class="aviso" id="aviso_contrasena"></span>
+    </fieldset>
+
+    <fieldset>
+        <legend>Colores Favoritos</legend>
+        <label for="chk_rojo">Rojo </label>
+        <input type="checkbox" id="chk_rojo" name="chk_color" value="rojo">
+        <label for="chk_azul">Azul </label>
+        <input type="checkbox" id="chk_azul" name="chk_color" value="azul">
+        <label for="chk_verde">Verde </label>
+        <input type="checkbox" id="chk_verde" name="chk_color" value="verde">
+        <label for="chk_morado">Morado </label>
+        <input type="checkbox" id="chk_morado" name="chk_color" value="morado">
+        <label for="chk_violeta">Violeta </label>
+        <input type="checkbox" id="chk_violeta" name="chk_color" value="violeta">
+        <label for="chk_amarillo">Amarillo </label>
+        <input type="checkbox" id="chk_amarillo" name="chk_color" value="amarillo">
+        <label for="chk_rosa">Rosa </label>
+        <input type="checkbox" id="chk_rosa" name="chk_color" value="rosa">
+        <label for="chk_gris">Gris </label>
+        <input type="checkbox" id="chk_gris" name="chk_color" value="gris">
+        <span class="aviso" id="aviso_colores"></span>
+    </fieldset>
+
+    <fieldset>
+        <legend>Género</legend>
+        <label for="rdo_hombre">Hombre </label>
+        <input type="radio" id="rdo_hombre" name="rdo_genero" value="H">
+        <label for="rdo_mujer">Mujer </label>
+        <input type="radio" id="rdo_mujer" name="rdo_genero" value="M">
+        <span class="aviso" id="aviso_genero"></span>
+    </fieldset>
+
+    <fieldset>
+        <legend>Introduce la ruta del fichero</legend>
+        <input type="file" id="fil_fichero" name="">
+        <span class="aviso" id="aviso_fichero"></span>
+    </fieldset>
+
+    <input type="button" id="btn_valida" name="" value="Valida" onclick="valida_formulario()">
+    <input type="button" id="btn_escribe" name="" value="Escribe Cookies" onclick="establece_cookie('anadir')">
+    <input type="button" id="btn_muestra" name="" value="Muestra Cookies" onclick="muestra_cookie()">
+    <input type="button" id="btn_borra" name="" value="Borra Cookies" onclick="establece_cookie('borrar')">
+</form>
+</body>
+</html>

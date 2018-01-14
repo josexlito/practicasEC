@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 4.2.2</title>
+    <script>
+        function borraTodo(){
+            document.getElementById('txtOperando1').value = "";
+            document.getElementById('txtOperando2').value = "";
+            document.getElementById('txtResultado').value = "";
+        }
+        function operacion(accion){
+            var op1 = document.getElementById('txtOperando1').value;
+            var op2 = parseFloat(document.getElementById('txtOperando2').value);
+            if(isNaN(op1)||isNaN(op2)|| op1===""||op2===""||(accion==="divis"&&op2===0)){
+                document.getElementById('txtResultado').value = "error";
+            }else {
+                op1 = parseFloat(op1);
+                op2 = parseFloat(op2);
+                var res;
+                switch (accion){
+                    case "sumar":
+                        res = op1 + op2;
+                        break;
+                    case "resta":
+                        res = op1 - op2;
+                        break;
+                    case "multi":
+                        res = op1 * op2;
+                        break;
+                    case "divis":
+                        res = op1 / op2;
+                        break;
+                }
+                document.getElementById('txtResultado').value = res;
+            }
+        }
+    </script>
+    <style>
+        .contenidos{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div style="width: 500px;">
+    <form>
+        <div class="contenidos">
+            <h2>MINICALCULADORA</h2>
+        </div>
+        <div class="contenidos">
+            <label for="txtOperando1">Operando 1</label><input title type="text" id="txtOperando1" name="txtOperando1"/>
+        </div>
+        <div class="contenidos">
+            <label for="txtOperando2">Operando 2</label><input title type="text" id="txtOperando2" name="txtOperando2"/>
+        </div>
+        <div class="contenidos">
+            <input type="button" value="+" onclick="operacion('sumar')"/>
+            <input type="button" value="-" onclick="operacion('resta')"/>
+            <input type="button" value="X" onclick="operacion('multi')"/>
+            <input type="button" value="/" onclick="operacion('divis')"/>
+            <input type="button" value="borrar" onclick="borraTodo()"/>
+        </div>
+        <div class="contenidos">
+            <label for="txtResultado">Resultado</label><input title type="text" id="txtResultado" name="txtResultado"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

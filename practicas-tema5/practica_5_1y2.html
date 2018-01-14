@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 5 (1 y 2)</title>
+    <script>
+        function posiciona_correctamente(evento_capturado) {
+            var id_capturado = evento_capturado.target.id;
+            var aux_id_capturado = id_capturado.split("_");
+            var posicion_capturado = aux_id_capturado[1];
+            var listado_radios = document.getElementsByName("rdo_requisitos");
+            if(evento_capturado.type === "click"){
+                if(document.getElementById("txt_"+posicion_capturado)){
+                    document.getElementById("txt_"+posicion_capturado).focus();
+                }
+            } else if (evento_capturado.type === "keyup" && evento_capturado.keyCode!==9){
+                if(id_capturado.value !== ""){
+                    document.getElementById("rdo_"+posicion_capturado).checked = true;
+                    for(var i=0;i<listado_radios.length;i++){
+                        if(document.getElementById(listado_radios[i].id).checked === false){
+                            var aux_nombre_id_radio = listado_radios[i].id.split("_");
+                            if(document.getElementById("txt_" + aux_nombre_id_radio[1])){
+                                document.getElementById("txt_" + aux_nombre_id_radio[1]).value = "";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .bloque{
+            display: table;
+            float: left;
+            width: 100%;
+        }
+        .linea_conjunto{
+            display: table-row;
+        }
+        .linea_unidad{
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form action="">
+        <div>
+            <h1>Solicitud ciclos formativos de informática de grado superior</h1>
+        </div>
+        <div class="bloque" id="bloqueDatosPersonales">
+            <fieldset>
+                <legend>Datos personales</legend>
+                <div class="linea_conjunto">
+                    <div class="linea_unidad">
+                        <label for="txtApellidos">Apellidos:</label><br/><input type="text" id="txtApellidos" size="40"/>
+                    </div>
+                    <div class="linea_unidad">
+                        <label for="txtNombre">Nombre:</label><br/><input type="text" id="txtNombre" size="20"/>
+                    </div>
+                    <div class="linea_unidad">
+                        <label for="txtDNI">DNI:</label><br/><input type="text" id="txtDNI" size="15"/>
+                    </div>
+                </div>
+
+                <div class="linea_conjunto">
+
+                    <div class="linea_unidad">
+                        <label for="txtLugarNac">Nacido/a en:</label><br/><input type="text" id="txtLugarNac" size="40"/>
+                    </div>
+                    <div class="linea_unidad">
+                        <label for="txtPaisNac">País:</label><br/><input type="text" id="txtPaisNac" size="20"/>
+                    </div>
+                    <div class="linea_unidad">
+                        <label for="txtFechaNac">Fecha de nacimiento (dd/mm/aaaa):</label><br/><input type="text" id="txtFechaNac" size="15"/>
+                    </div>
+
+                </div>
+
+                <div class="linea_conjunto">
+                    <div class="linea_unidad">
+                        <label for="txtDomicilio">Domicilio (Calle, Plaza y número):</label><br/><input type="text" id="txtDomicilio" size="60"/>
+                    </div>
+                    <div class="linea_unidad">
+                        <label for="txtCP">Código Postal:</label><br/><input type="text" id="txtCP" size="10"/>
+                    </div>
+                </div>
+
+                <div class="linea_conjunto">
+
+                    <div class="linea_unidad">
+                        <label for="txtLocalidad">Localidad</label><br/><input type="text" id="txtLocalidad" size="30"/>
+                    </div>
+                    <div class="linea_unidad">
+                        <label for="slcProvincia">Provincia:</label><br/>
+                        <select name="" id="slcProvincia">
+                            <option value="A">Alicante</option>
+                            <option value="C">Castellón</option>
+                            <option value="V">Valencia</option>
+                            <option value="O">Otros</option>
+                        </select>
+                    </div>
+                    <div class="linea_unidad">
+                        <label for="txtTelefono">Teléfono:</label><br/><input type="text" id="txtTelefono" size="15"/>
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+        <div class="bloque" id="bloqueRequisitos">
+            <fieldset>
+                <legend>Requisitos de acceso</legend>
+                <div class="linea_conjunto">
+                    <div class="linea_unidad">
+                        Directo:
+                    </div>
+                    <div class="linea_unidad">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="linea_conjunto">
+                    <div class="linea_unidad">
+                        &nbsp;
+                    </div>
+                    <div class="linea_unidad">
+                        <div class="linea_conjunto">
+                            <input type="radio" name="rdo_requisitos" id="rdo_logse" onclick="posiciona_correctamente(event)"/><label for="rdo_logse">Bachillerato LOGSE Modalidad:</label><input type="text" id="txt_logse" onkeyup="posiciona_correctamente(event)"/>
+                        </div>
+                        <div class="linea_conjunto">
+                            <input type="radio" name="rdo_requisitos" id="rdo_experimental" onclick="posiciona_correctamente(event)"/><label for="rdo_experimental">Bachillerato experimental:</label>
+                        </div>
+                        <div class="linea_conjunto">
+                            <input type="radio" name="rdo_requisitos" id="rdo_cou" onclick="posiciona_correctamente(event)"/><label for="rdo_cou">COU. Opción:</label><input type="text" id="txt_cou" onkeyup="posiciona_correctamente(event)"/>
+                        </div>
+                        <div class="linea_conjunto">
+                            <input type="radio" name="rdo_requisitos" id="rdo_fp2" onclick="posiciona_correctamente(event)"/><label for="rdo_fp2">FP2</label>
+                        </div>
+                        <div class="linea_conjunto">
+                            <input type="radio" name="rdo_requisitos" id="rdo_otros" onclick="posiciona_correctamente(event)"/><label for="rdo_otros">Otros. (especifique):</label><input type="text" id="txt_otros" onkeyup="posiciona_correctamente(event)"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="linea_conjunto">
+                    <div class="linea_unidad">
+                        <input type="radio" name="rdo_requisitos" id="rdo_prueba"/><label for="rdo_prueba">Mediante prueba</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="bloque" id="bloqueSolicitud">
+            <fieldset>
+                <legend>Solicitud</legend>
+                <div class="linea_conjunto">
+                    <p>El/la que suscribe, desea ser admitido/a en este centro para cursar el ciclo formativo de grado superior:</p>
+                </div>
+                <div class="linea_conjunto">
+                    <label for="slc_ciclo">Ciclo Formativo:</label>
+                    <select name="slc_ciclo" id="slc_ciclo">
+                        <option value="vacio" disabled selected></option>
+                        <option value="ASIR">Administración de Sistemas Informáticos y en Red</option>
+                        <option value="DAW">Desarrollo de Aplicaciones Web</option>
+                    </select>
+                </div>
+                <div class="linea_conjunto">
+                    <p>En caso de no ser admitido/a, solicita la admisión por orden de preferencia en los siguientes:</p>
+                </div>
+                <div class="linea_conjunto">
+                    <div class="linea_conjunto">
+                        <div class="linea_unidad">Ciclos Formativos</div>
+                        <div class="linea_unidad">Centros</div>
+                        <div class="linea_unidad">Localidad</div>
+                    </div>
+                    <div class="linea_conjunto">
+                        <div class="linea_unidad"><input type="text"/></div>
+                        <div class="linea_unidad"><input type="text"/></div>
+                        <div class="linea_unidad"><input type="text"/></div>
+                    </div>
+                    <div class="linea_conjunto">
+                        <div class="linea_unidad"><input type="text"/></div>
+                        <div class="linea_unidad"><input type="text"/></div>
+                        <div class="linea_unidad"><input type="text"/></div>
+                    </div>
+                </div>
+                <div class="linea_conjunto">
+                    <label for="chk_horesp">Modalidad de horario especial (marque):</label><input type="checkbox" id="chk_horesp"/>
+                </div>
+            </fieldset>
+        </div>
+        <div class="bloque" id="bloqueDocumentacion">
+            <fieldset>
+                <legend>Documentación presentada</legend>
+                <div class="linea_conjunto">
+                    <div class="linea_conjunto">
+                        <div class="linea_unidad">
+                            <input type="checkbox" id="chk_fotoDNI"/><label for="chk_fotoDNI">Fotocopia DNI</label>
+                        </div>
+                        <div class="linea_unidad">
+                            <input type="checkbox" id="chk_certac"/><label for="chk_certac">Certificado académico</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="linea_conjunto">
+                    <input type="checkbox" id="chk_otros"/><label for="chk_otros">Otros documentos (especifique):</label><input type="text"/>
+                </div>
+            </fieldset>
+        </div>
+        <div class="bloque" id="bloqueComunicacion">
+            <fieldset>
+                <legend>Comunicación</legend>
+                <div class="linea_conjunto">
+                    <p>De acuerdo con el artículo 42.2 de la Ley 30/1992, de 26 de noviembre, de Régimen Jurídico de las Administraciones Públicas
+                        y del Procedimiento Administrativo Común, según la nueva redacción de la Ley 4/1999, de 13 de enero, se informa que:</p>
+                </div>
+                <div class="linea_conjunto">
+                    <ul>
+                        <li>El plazo máximo para resolver la presente solicitud es de 3 meses desde la fecha en que se haya tenido entrada en el
+                            registro del órgano competente para la tramitación, sin perjuicio de los previsto en el artículo 42.5 de la misma ley.</li>
+                        <li>El efecto del silencio administrativo si transcurre en el plazo sin que se haya dictado y notificado la resolución
+                            correspondiente, es desestimatorio de la solicitud.</li>
+                    </ul>
+                </div>
+                <div class="linea_conjunto">
+                    <input type="text"/>,<input type="text"/> de <input type="text"/> de
+                    <select name="" id="">
+                        <option value="2017" selected>2017</option>
+                        <option value="2018">2018</option>
+                    </select>
+                </div>
+                <div class="linea_conjunto">
+                    <p>Registro de entrada</p>
+                </div>
+                <div class="linea_conjunto">
+                    <p>La persona solicitante</p>
+                </div>
+                <div class="linea_conjunto">
+                    <p>Firma</p>
+                </div>
+            </fieldset>
+        </div>
+        <div class="bloque" id="bloqueFinal">
+            <p>Los datos personales contenidos en este impreso, podrán ser incluidos en un fichero para su tratamiento por la Conselleria d'Educació,
+            Cultura i Esport en el uso de las funciones propias que tiene atribuidas en el ámbito de sus competencias, pudiendo dirigirse a cualquier
+            órgano de la misma para ejercitar los derechos de acceso, rectificación, cancelación y oposición, según lo dispuesto en la Ley Orgánica
+                15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (BOE núm 298, de 14 de diciembre de 1999)</p>
+            <p>Director/a o Titular del centro</p>
+        </div>
+        <div></div>
+    </form>
+</div>
+</body>
+</html>

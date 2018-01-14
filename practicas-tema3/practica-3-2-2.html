@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Practica 3-2-2</title>
+	<script>
+	var informacion = navigator.userAgent, vendor = "";
+	if(informacion.match('Edge')){ navegador = "Microsoft Edge"; vendor = "Edge";
+	} else if (informacion.match("Firefox")){ navegador = "Mozilla Firefox"; vendor = "Firefox";
+	} else if (informacion.match("Chrome")){ navegador = "Google Chrome"; vendor = "Chrome";
+	} else { navegador = "Sin determinar"; vendor = "Desconocido";
+	}
+	var palabra = vendor.length;
+	var posicion = informacion.lastIndexOf(vendor);
+	var version = informacion.slice(posicion+palabra+1, posicion+palabra+3);
+	var fecha_ultima_mod = new Date(document.lastModified);
+	var ultima_mod = fecha_ultima_mod.getDate()+"/"+(fecha_ultima_mod.getMonth()+1)+"/"+fecha_ultima_mod.getFullYear()+" "+fecha_ultima_mod.getHours()+":"+fecha_ultima_mod.getMinutes()+":"+fecha_ultima_mod.getSeconds();
+	</script>
+</head>
+<body>
+	Navegador: <script>document.write(navegador)</script><br/>
+	Version: <script>document.write(version)</script><br/>
+	Ultima modificación: <script>document.write(ultima_mod)</script>
+	<br/>
+	<br/>
+	<input type="button" value="Web Mare Nostrum" onclick="window.open('http://www.iesmarenostrum.com')">
+	<br/>
+</body>
+</html>

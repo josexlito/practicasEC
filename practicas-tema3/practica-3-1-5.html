@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Practica 3.1 - 5</title>
+    <script>
+        var dni = prompt("Introduzca el DNI");
+        var letrasDNI = "TEWAGMYFPDXBNJZSQVHLCKET";
+        var comprueba_letra, letra_selec;
+        var cantidad = dni.length;
+        var numero = dni.slice(0, cantidad - 1);
+        var letra = dni.slice(cantidad - 1, cantidad);
+        if (numero > 0 && numero < 99999999) {
+            comprueba_letra = letrasDNI.slice((numero % 23), 1);
+            if (comprueba_letra === letra) {
+                alert("Número y Letra de DNI correctos");
+            } else {
+                alert("Número y Letra de DNI no coinciden");
+            }
+        } else {
+            alert("Número de DNI proporcionado no es válido");
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

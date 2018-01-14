@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Práctica 3.5.3</title>
+	<script type="text/javascript">
+		var ventanaMovistar, ventanaYahoo, ventanaGoogle;
+		function checkVentanas(){
+			if((!window.ventanaMovistar)&&(!window.ventanaYahoo)&&(!window.ventanaGoogle)){
+				alert("Todas las ventanas están cerradas");
+			} else if((!window.ventanaMovistar.closed)||(!window.ventanaYahoo.closed)||(!window.ventanaGoogle.closed)){
+				alert("Existe alguna ventana abierta");
+			}
+		}
+	</script>
+</head>
+<body style="background-color: aqua;">
+	<h1>Ventana Documento principal</h1>
+	<input type="button" value="Portal de Movistar" onclick="ventanaMovistar = window.open('http://www.movistar.es')" /><br/>
+	<input type="button" value="Portal de Yahoo" onclick="ventanaYahoo = window.open('http://www.yahoo.es')"/><br/>
+	<input type="button" value="Portal de Google" onclick="ventanaGoogle = window.open('http://www.google.es')"/><br/>
+	<input type="button" value="Chequear ventanas" onclick="checkVentanas()"/>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Practica 3-2-1</title>
+	<script type="text/javascript">
+	var informacion = navigator.userAgent;
+	if(informacion.match('Edge')){ navegador = "Microsoft Edge"; 
+	} else if (informacion.match("Firefox")){ navegador = "Mozilla Firefox";
+	} else if (informacion.match("Chrome")){ navegador = "Google Chrome";
+	} else { navegador = "Sin determinar";
+	}
+
+	alert("El navegador que se esta utilizando es " + navegador);
+	</script>
+</head>
+<body>
+	<p>El navegador <script>if(navigator.javaEnabled()){document.write("SI")}else{document.write("NO")}</script> está preparado para soportar Applets de Java</p>
+	<p>Las cookies estan <script>if(navigator.cookieEnabled){document.write("habilitadas")}else{document.write("deshabilitadas")}</script></p>
+	<b>Protocolo: </b><script>document.write(location.protocol)</script><br/>
+	<b>Dirección: </b><script>document.write(window.location)</script><br/>
+	<b>Ancho y Alto de Pantalla: </b><script>document.write(window.innerWidth + "x" + window.innerHeight)</script><br/>
+	<b>Resolución: </b><script>document.write(screen.pixelDepth + "ppp")</script>
+</body>
+</html>

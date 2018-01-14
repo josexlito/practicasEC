@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Practica 3.1 - 2</title>
+<script>
+    var datos = prompt("Introduce un texto");
+    var salida1, salida2;
+    var longitud = datos.length;
+    if (longitud % 2 === 0) {
+        salida1 = datos.slice(0, (longitud / 2));
+        salida2 = datos.slice((longitud / 2), longitud);
+    } else {
+        salida1 = datos.slice(0, (longitud / 2) + 1);
+        salida2 = datos.slice((longitud / 2) + 1, longitud);
+    }
+    alert(salida1 + "\n" + salida2);
+</script>
+</head>
+<body>
+
+</body>
+</html>
