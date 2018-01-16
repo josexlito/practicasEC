@@ -4,12 +4,42 @@
     <meta charset="UTF-8">
     <title>Práctica 6 - 1 y 2</title>
     <script>
-        console.log(document.documentElement);
+        function muestra_arbol() {
+            var principal = document.documentElement;
+            var salida_principal;
+            salida_principal = "NODO RAIZ: " + principal;
+            salida_principal = salida_principal + "\n" + "NUMERO DE HIJOS: " + principal.childNodes.length;
+            alert(salida_principal);
+            for (var i = 0; i < principal.childNodes.length; i++) {
+                var hijo = principal.childNodes[i];
+                var num_hijo = parseInt(i) + 1;
+                var salida_hijo;
+                salida_hijo = "HIJO " + num_hijo + " de " + hijo.parentNode.nodeName + ":" + hijo.nodeName;
+                salida_hijo = salida_hijo + "\n" + "Objeto del nodo: " + hijo;
+                salida_hijo = salida_hijo + "\n" + "Tipo de nodo: " + hijo.nodeType;
+                salida_hijo = salida_hijo + "\n" + "Valor del nodo: " + hijo.nodeValue;
+                salida_hijo = salida_hijo + "\n" + "Número de hijos: " + hijo.childNodes.length;
+                alert(salida_hijo);
+                for (var j = 0; j < hijo.childNodes.length; j++) {
+                    var nieto = hijo.childNodes[j];
+                    var num_nieto = parseInt(j) + 1;
+                    var salida_nieto;
+                    salida_nieto = "NIETO de " + hijo.parentNode.nodeName + ", HIJO " + num_nieto + " de " + nieto.parentNode.nodeName;
+                    salida_nieto = salida_nieto + "\n" + "Nombre del nodo: " + nieto.nodeName;
+                    salida_nieto = salida_nieto + "\n" + "Objeto del nodo: " + nieto;
+                    salida_nieto = salida_nieto + "\n" + "Tipo de nodo: " + nieto.nodeType;
+                    salida_nieto = salida_nieto + "\n" + "Valor del nodo: " + nieto.nodeValue;
+                    alert(salida_nieto);
+                }
+            }
+        }
     </script>
 </head>
 <body>
-<h1>HOLA</h1>
-<p>Texto lorem ipsum cutre</p>
-<h2>ADIOS</h2>
+    <h1>Título de la página</h1>
+    <p>Esto es un párrafo</p>
+    <h2>Esto es un subtítulo</h2>
+    <h3>Y finalmente, un subtítulo de subtítulo</h3>
+    <button onclick="muestra_arbol()" type="button">Mostrar Arbol DOM</button>
 </body>
 </html>
