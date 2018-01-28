@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 6 - 3 y 4</title>
+    <script>
+        function anadir_elemento(){
+            var elemento_anadir = prompt("Nombre de la nueva propiedad o método:");
+            var elemento_ul = document.getElementsByTagName('ul');
+            var elemento_li = document.createElement('li');
+            var elementos_boton = document.getElementsByTagName('input');
+            var anade_texto = document.createTextNode(elemento_anadir);
+            elemento_li.appendChild(anade_texto);
+            elemento_ul[0].appendChild(elemento_li);
+            if(elemento_ul[0].childElementCount == 1){
+                elementos_boton[1].disabled = false;
+            }
+        }
+        function elimina_elemento(){
+            var elemento_eliminar = prompt("Nombre del elemento a eliminar:");
+            var elementos_li = document.getElementsByTagName('li');
+            var elementos_boton = document.getElementsByTagName('input');
+            var cuantos_li_hay = elementos_li.length;
+            for(var i=0;i<cuantos_li_hay;i++){
+                if(elemento_eliminar == elementos_li[i].firstChild.nodeValue){
+                    elementos_li[i].parentNode.removeChild(elementos_li[i]);
+                    cuantos_li_hay--;
+                }
+            }
+            if(cuantos_li_hay==0){
+                elementos_boton[1].disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Ejercicio DOM</h1>
+<p>Propiedades y métodos del objeto Node:</p>
+<div>
+    <ul>
+        <li>nodeName</li>
+        <li>nodeValue</li>
+        <li>nodeType</li>
+        <li>parentNode</li>
+    </ul>
+</div>
+<p>Pulsa el botón para <input type="button" value="Añadir" onclick="anadir_elemento()"> o <input type="button" value="Eliminar" onclick="elimina_elemento()"> un elemento de la lista</p>
+</body>
+</html>
