@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 6 - 5 y 6</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .fila {
+            width: 300px;
+            height: 25px;
+            clear: both;
+            margin: 4px 0;
+        }
+        #resultados{
+            width: 100%;
+            height: 25px;
+            text-align: right;
+            border: 1px solid black;
+            background-color: #ff8fd4;
+        }
+        .boton{
+            width: 20%;
+            float: left;
+            background-color: #CACACA;
+            border: 1px solid black;
+            margin: 0 3px;
+            text-align: center;
+            user-select: none;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        var mem_cantidad = null;
+        var mem_signo = null;
+        function click_aqui(evento){
+            var caja_resultados = document.getElementById('resultados'); 
+            var captura = evento.target.firstChild.nodeValue;
+            var resultado = caja_resultados.firstChild.nodeValue;
+            if(captura=="0"||captura=="1"||captura=="2"||captura=="3"||captura=="4"||captura=="5"||captura=="6"||captura=="7"||captura=="8"||captura=="9"){
+                if(resultado == "0" || resultado == "+"||resultado == "-"||resultado == "*"||resultado == "/"){
+                    caja_resultados.innerHTML = captura;
+                } else {
+                    caja_resultados.innerHTML = resultado+captura;
+                }
+            } else if(captura=="C") {
+                caja_resultados.innerHTML = clear_memoria();
+            } else if(captura=="=") {
+                caja_resultados.innerHTML = igual();
+                clear_memoria();
+            } else {
+                mem_signo=captura;
+                mem_cantidad = mem_cantidad==null?parseFloat(resultado):parseFloat(igual());
+                caja_resultados.innerHTML = captura;
+            }
+        }
+        function clear_memoria(){
+            mem_cantidad = null;
+            mem_signo = null;
+            return "0";
+        }
+        function igual(){
+            var resultado = document.getElementById('resultados').firstChild.nodeValue;
+            var aux_mem_temp = parseFloat(resultado);
+            var mem_temp = isNaN(aux_mem_temp)?0:aux_mem_temp;
+            return mem_signo!=null?mem_signo=="+"?mem_cantidad+mem_temp:(mem_signo=="-"?mem_cantidad-mem_temp:(mem_signo=="*"?mem_cantidad*mem_temp:(resultado=="0"||mem_cantidad=="0"?"División entre 0 no posible":mem_cantidad/mem_temp))):0;
+        }
+    </script>
+</head>
+<body>
+<div>
+    <div class="fila">
+        <div id="resultados">0</div>
+    </div>
+    <div id="fila_1" class="fila">
+        <div class="boton" onclick="click_aqui(event)">C</div>
+    </div>
+    <div id="fila_2" class="fila">
+        <div class="boton" onclick="click_aqui(event)">1</div>
+        <div class="boton" onclick="click_aqui(event)">2</div>
+        <div class="boton" onclick="click_aqui(event)">3</div>
+        <div class="boton" onclick="click_aqui(event)">+</div>
+    </div>
+    <div id="fila_3" class="fila">
+        <div class="boton" onclick="click_aqui(event)">4</div>
+        <div class="boton" onclick="click_aqui(event)">5</div>
+        <div class="boton" onclick="click_aqui(event)">6</div>
+        <div class="boton" onclick="click_aqui(event)">-</div>
+    </div>
+    <div id="fila_4" class="fila">
+        <div class="boton" onclick="click_aqui(event)">7</div>
+        <div class="boton" onclick="click_aqui(event)">8</div>
+        <div class="boton" onclick="click_aqui(event)">9</div>
+        <div class="boton" onclick="click_aqui(event)">*</div>
+    </div>
+    <div id="fila_5" class="fila">
+        <div class="boton" onclick="click_aqui(event)">0</div>
+        <div class="boton">.</div>
+        <div class="boton" onclick="click_aqui(event)">=</div>
+        <div class="boton" onclick="click_aqui(event)">/</div>
+    </div>
+</div>
+</body>
+</html>
