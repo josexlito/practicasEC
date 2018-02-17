@@ -1,0 +1,32 @@
+{
+  "___comentario":"Elijo JSON porque es una manera muy clara de estructurar los datos, creo que ocupa menos espacio y es ampliamente utilizada",
+  "Ciudades":[
+    {
+      "origen":"Madrid",
+      "clave":"MAD",
+      "destinos":[{
+        "destino":"Barcelona",
+        "clave":"BCN"},{
+        "destino":"Valencia",
+        "clave":"VLC"},{
+        "destino":"Sevilla",
+        "clave":"SEV"}]
+    },{
+      "origen":"Barcelona",
+      "clave":"BCN",
+      "destinos":[{
+        "destino":"Madrid",
+        "clave":"MAD"},{
+        "destino":"Zaragoza",
+        "clave":"ZGZ"}]
+    },{
+      "origen":"Alicante",
+      "clave":"ALC",
+      "destinos":[{
+        "destino":"Madrid",
+        "clave":"MAD"},{
+        "destino":"Barcelona",
+        "clave":"BCN"}]
+    }
+  ]
+}

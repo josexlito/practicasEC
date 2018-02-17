@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 7 - 3 y 4</title>
+    <script>
+        var objetoHTTPRequest, objeto_origen, objeto_destino;
+        var fichero_JSON = "datos.json";
+
+        if (window.XMLHttpRequest){
+            objetoHTTPRequest = new XMLHttpRequest();
+        } else if(window.ActiveXObject) {
+            objetoHTTPRequest = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        function consulta_ajax(origen, elem_origen, elem_destino){
+            objeto_origen = document.getElementById(elem_origen);
+            objeto_destino = elem_destino!=="" ? document.getElementById(elem_destino) : null;
+            obten_datos(origen);
+        }
+
+        function obten_datos(origen){
+            if(objetoHTTPRequest){
+                objetoHTTPRequest.open("GET",origen,true);
+                objetoHTTPRequest.onreadystatechange = objeto_destino === null ? respuesta_origenes : respuesta_destinos;
+                objetoHTTPRequest.send();
+            }
+        }
+
+        function respuesta_origenes(){
+            if(objetoHTTPRequest.readyState === 4 && objetoHTTPRequest.status === 200){
+                var contenido_json = JSON.parse(objetoHTTPRequest.responseText);
+                var contenido_anadido = "";
+                objeto_origen.innerHTML = null;
+                for (var i=0;i<contenido_json['Ciudades'].length;i++){
+                    var clave = contenido_json['Ciudades'][i]['clave'];
+                    var ciudad = contenido_json['Ciudades'][i]['origen'];
+                    contenido_anadido = contenido_anadido + "<option value='"+ clave +"'>" + ciudad + "</option>";
+                }
+                objeto_origen.innerHTML = contenido_anadido;
+            }
+        }
+
+        function respuesta_destinos(){
+            if(objetoHTTPRequest.readyState === 4 && objetoHTTPRequest.status === 200){
+                var contenido_json = JSON.parse(objetoHTTPRequest.responseText);
+                for (var i=0;i<contenido_json['Ciudades'].length;i++){
+                    if (objeto_origen.value === contenido_json['Ciudades'][i]['clave']){
+                        var contenido_anadido = "";
+                        objeto_destino.innerHTML = null;
+                        for(var j=0;j<contenido_json['Ciudades'][i]['destinos'].length;j++){
+                            var clave = contenido_json['Ciudades'][i]['destinos'][j]['clave'];
+                            var ciudad = contenido_json['Ciudades'][i]['destinos'][j]['destino'];
+                            contenido_anadido = contenido_anadido + "<option value='"+ clave +"'>" + ciudad + "</option>";
+                        }
+                        objeto_destino.innerHTML = contenido_anadido;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="consulta_ajax(fichero_JSON, 'slc_origen', '');">
+<div>
+    <div>
+        <div>
+            Origen
+        </div>
+        <div id="caja_origen">
+            <select title name="slc_origen" id="slc_origen" onchange="consulta_ajax(fichero_JSON, this.id, 'slc_destino')">
+            </select>
+        </div>
+
+    </div>
+    <div>
+        <div>
+            Destino
+        </div>
+        <div id="caja_destino">
+            <select title name="slc_destino" id="slc_destino">
+            </select>
+        </div>
+    </div>
+</div>
+</body>
+</html>
